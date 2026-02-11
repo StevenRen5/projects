@@ -1,0 +1,40 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+:root {
+    color: hsl(221.01deg 56.03% 27.65%);
+    font-family: "Cinzel", sans-serif;
+}
+
+/* Header component */
+header {
+    background-color: #F8FAFC;
+    border-bottom: 1px solid #E5E7EB;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5px 0;
+    margin-bottom: 25px;
+}
+
+header h1 {
+    font-size: 1.25rem;
+}
+
+header .cpp-logo {
+    width: 50px;
+    display: block;
+}
+
+
+/* Applicant Table Component */
+table.applicant-table {
+    font-family: sans-serif;
+    color: black;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
