@@ -7,21 +7,26 @@ import CSVUploader from "./components/CSVUploader"
 // row represents an applicant from each row in the CSV
 function normalizeApplicant(row) {
 
+  const firstName = row["First name:"] || ""
+  const lastName = row["Last name:"] || ""
+  const gender = row["Gender:"] || ""
   const speakerTypeKey = Object.keys(row).find(key => key.toLowerCase().includes("are you a native"))
-  const spokenLanguagesKey = Object.keys(row).find(key => key.toLowerCase().includes("are you a native"))
+  const speakerType = row[speakerTypeKey].split(" ").slice(0,2).join(" ") || ""
+  const spokenLanguagesKey = speakerType === "Native speaker" ? Object.keys(row).find(key => key.toLowerCase().includes("if you are a native speaker")) : Object.keys(row).find(key => key.toLowerCase().includes("if you are a nonnative speaker"))
+  // const spokenLanguages = row[spokenLanguagesKey].split(/[,;]/)
   const multiplePartnersKey = Object.keys(row).find(key => key.toLowerCase().includes("more than one partner"))
+  const multiplePartners = row[multiplePartnersKey] || ""
   const commentKey = Object.keys(row).find(key => key.toLowerCase().includes("comments"))
-
-  // normalize the spokelanguages for the specific speaker type
+  const comment = row[commentKey] || ""
 
   return {
-    firstName: row["First name:"] || "",
-    lastName: row["Last name:"] || "",
-    gender: row["Gender:"] || "",
-    speakerType: row[speakerTypeKey].split(" ").slice(0,2).join(" ") || "",
-    spokenLanguages: row[spokenLanguagesKey] || "",
-    multiplePartners: row[multiplePartnersKey] || "",
-    comment: row[commentKey] || ""
+    firstName: firstName,
+    lastName: lastName,
+    gender: gender,
+    speakerType: speakerType,
+    spokenLanguages: spokenLanguages,
+    multiplePartners: multiplePartners,
+    comment: comment,
   }
 }
 
@@ -31,7 +36,7 @@ function App() {
 
   function  handleCSVData(CSVdata) {
     const normalizedData = CSVdata.map(normalizeApplicant)
-    console.log(normalizedData)
+    // console.log(normalizedData)
     setApplicants(normalizedData)
   }
 
