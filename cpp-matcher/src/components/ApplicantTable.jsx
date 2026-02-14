@@ -14,9 +14,9 @@ function ApplicantTable(props) {
     })
 
     // Convert availability object keys (days) into an array we can iterate over
-    // const availability = Object.keys(applicant.availability).map(day => {
-    //     return applicant.availability[day].length > 0 ? `${day}: ${applicant.availability[day].join(", ")}` : ""
-    // }).filter(day => day != "").join(", ") 
+    const availability = Object.keys(applicant.availability).map(day => {
+        return applicant.availability[day].length > 0 ? `${day}: ${applicant.availability[day].join(", ")}` : ""
+    }).filter(day => day != "").join(", ") 
 
     return (
         <tr>
@@ -25,8 +25,8 @@ function ApplicantTable(props) {
             <td>{applicant.gender}</td>
             <td>{applicant.speakerType}</td>
             <td>{spokenLanguages}</td>
-            <td>{applicant.multiplePartners ? "yes" : "no"}</td>
-            {/* <td>{availability}</td> */}
+            <td>{applicant.multiplePartners === "Yes" ? "Yes" : "No"}</td>
+            <td>{availability}</td>
             <td>{applicant.comment}</td>
         </tr>
     )
