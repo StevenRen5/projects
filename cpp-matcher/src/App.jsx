@@ -19,6 +19,8 @@ function normalizeApplicant(row) {
   const commentKey = Object.keys(row).find(key => key.toLowerCase().includes("comments"))
   const comment = row[commentKey] || ""
 
+  // normalize spokenlanguages continue
+
   return {
     firstName: firstName,
     lastName: lastName,
